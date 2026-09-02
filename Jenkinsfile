@@ -1,5 +1,9 @@
 node {
 
+    stage('checkout'){
+        checkout scm
+    }
+
     stage('Build') {
         bat 'mvn clean compile'
     }
