@@ -1,12 +1,18 @@
-pipeline{
+pipeline {
     agent any
 
-    stages{
-        stage('Build'){
-            steps{
+    tools {
+        jdk 'JDK21'
+        maven 'Maven3'
+    }
+
+    stages {
+
+        stage('Build') {
+            steps {
                 bat 'mvn clean package'
             }
         }
-        
+
     }
 }
