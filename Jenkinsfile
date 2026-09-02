@@ -32,5 +32,15 @@ pipeline {
             }
         }
 
+        stage('Deploy') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'vercel-token', variable: 'VERCEL_TOKEN')
+                ]) {
+                    bat 'vercel --prod --token %VERCEL_TOKEN% web'
+                }
+            }
+        }
+
     }
 }
