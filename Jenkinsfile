@@ -37,7 +37,7 @@ pipeline {
                 withCredentials([
                     string(credentialsId: 'vercel-token', variable: 'VERCEL_TOKEN')
                 ]) {
-                    bat 'vercel --prod --token %VERCEL_TOKEN% web'
+                    bat 'vercel --prod --token %VERCEL_TOKEN% --yes web'
                 }
             }
         }
