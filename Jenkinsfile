@@ -10,13 +10,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean compile'
+                bat 'mvn clean package'
             }
         }
 
         stage('Test') {
             steps {
                 bat 'mvn test'
+            }
+        }
+
+        stage('Archive'){
+            steps{
+                bat archiveArtifacts artifacts: 'target/*.jar'
             }
         }
 
