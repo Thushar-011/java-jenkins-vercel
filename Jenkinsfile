@@ -1,33 +1,18 @@
-pipeline {
-    agent any
+node {
 
-    tools {
-        jdk 'JDK21'
-        maven 'Maven3'
+    stage('Build') {
+        bat 'mvn clean compile'
     }
 
-    stages {
+    stage('Test') {
+        bat 'mvn test'
+    }
 
-        stage('Build') {
-            steps {
-                bat 'mvn clean package -DskipTests'
-            }
-        }
-
-        stage('Archive') {
-            steps {
-                archiveArtifacts artifacts: 'target/*.jar'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                withCredentials([
+    stage('Deploy') {
+        withCredentials([
                     string(credentialsId: 'vercel-token', variable: 'VERCEL_TOKEN')
                 ]) {
                     bat 'vercel --prod --token %VERCEL_TOKEN% --yes web'
-                }
-            }
         }
 
     }
