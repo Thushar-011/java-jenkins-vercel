@@ -22,7 +22,7 @@ pipeline {
 
         stage('Archive'){
             steps{
-                bat archiveArtifacts artifacts: 'target/*.jar'
+                archiveArtifacts artifacts: 'target/*.jar'
             }
         }
 
