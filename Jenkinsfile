@@ -1,3 +1,5 @@
+@Library('my-shared-library')_
+
 pipeline {
     agent any
 
@@ -7,6 +9,12 @@ pipeline {
     }
 
     stages {
+
+        stage('Hello'){
+            steps{
+                sayHello('Thushar')
+            }
+        }
 
         stage('Build') {
             steps {
